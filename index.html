@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Theo Marlowe — Product &amp; Brand Designer</title>
+<meta name="description" content="Theo Marlowe, independent product and brand designer based in Ghent, Belgium.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,700;1,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#000;--ink:#fff;--mute:#8e8e8e;--dim:#5c5c5c;--line:rgba(255,255,255,.14);
+  --photo:#d6d6d6;--g1:#f7c531;--g2:#ee5a1f;--g3:#c8102e;--accent:#f28c28;--ok:#35d05a;
+  --font:"Archivo",Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);color:var(--ink);background:#6f6f6f;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh}
+.backdrop{position:fixed;inset:0;z-index:-1;background:radial-gradient(55% 45% at 45% 30%,#bdbdbd,#777 55%,#2e2e2e);filter:blur(30px);transform:scale(1.15)}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.arrow{color:var(--accent);font-style:normal}
+
+.page{display:none}.page.active{display:block}
+.frame{position:relative;width:min(1240px,calc(100% - 48px));margin:48px auto;background:var(--black);box-shadow:0 40px 120px rgba(0,0,0,.45)}
+
+/* ============ HOME ============ */
+.hero{display:grid;grid-template-columns:1fr 1fr;aspect-ratio:1.41/1;min-height:640px;max-height:900px}
+.photo{position:relative;background:var(--photo);z-index:3}
+.photo .shot{position:absolute;inset:0;overflow:hidden}
+.photo .shot svg,.photo .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1)}
+.photo .shot::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.5),transparent 40%)}
+.tab{position:absolute;top:0;left:0;z-index:4;background:#000;padding:16px 30px 16px 16px;border-bottom-right-radius:30px;font-size:15px;line-height:1.1}
+.tab::before,.tab::after{content:"";position:absolute;width:26px;height:26px;background:radial-gradient(circle at 100% 100%,transparent 26px,#000 26.5px)}
+.tab::before{left:100%;top:0}
+.tab::after{left:0;top:100%}
+.name{position:absolute;left:54%;bottom:12%;z-index:5;font-size:clamp(64px,10.6vw,150px);line-height:.86;letter-spacing:-.05em;white-space:nowrap;pointer-events:none}
+.name span{display:block}
+.name .first{font-weight:400;padding-left:.32em}
+.name .last{font-weight:800;font-style:italic}
+.meta{position:absolute;bottom:22px;z-index:5;font-size:11px;line-height:1.5}
+.meta small{display:block;color:#bdbdbd;font-size:10px;letter-spacing:.04em;text-transform:uppercase}
+.meta.avail{left:16px}.meta.avail b{font-style:italic;font-weight:600}
+.meta.loc{left:86%;white-space:nowrap}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--ok);margin-left:5px;box-shadow:0 0 8px var(--ok)}
+
+.works{position:relative;padding:52px 48px 40px;background:linear-gradient(90deg,#4a4a4a 0%,#141414 22%,#000 40%)}
+.works-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding-bottom:22px;border-bottom:1px solid var(--line)}
+.works-head h2{font-size:clamp(30px,3.2vw,42px);font-weight:400;letter-spacing:-.03em;line-height:1}
+.works-head sup{font-size:.38em;vertical-align:top;margin-left:4px}
+.clients{display:flex;gap:22px;align-items:center;font-size:12px;font-weight:600;padding-top:10px;flex-wrap:wrap;justify-content:flex-end}
+.clients span{display:flex;align-items:center;gap:6px}
+.clients svg{width:13px;height:13px;fill:#fff}
+.rows{list-style:none}
+.rows li{position:relative}
+.row{display:flex;align-items:center;justify-content:space-between;height:41px;border-bottom:1px solid var(--line);font-size:clamp(14px,1.3vw,16px);color:#e6e6e6;overflow:hidden;position:relative}
+.row .count{color:var(--dim);font-size:13px}
+.row .mq{position:absolute;inset:0;display:none;align-items:center;white-space:nowrap;font-style:italic;font-weight:500;color:#fff}
+.row .mq i{display:inline-block;padding-right:.6em;font-style:inherit;animation:slide 9s linear infinite}
+@keyframes slide{to{transform:translateX(-100%)}}
+.preview{position:absolute;right:6%;top:30px;width:290px;height:170px;z-index:6;pointer-events:none;opacity:0;transform:translateY(8px);transition:.25s}
+.preview .pc{position:absolute;width:110px;border-radius:12px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.6)}
+.preview .pc:nth-child(1){left:0;top:4px;transform:rotate(-3deg)}
+.preview .pc:nth-child(2){left:86px;top:40px;transform:rotate(2deg);z-index:2}
+.preview .pc:nth-child(3){left:172px;top:16px;transform:rotate(4deg)}
+.preview .art{aspect-ratio:3/4}
+@media (hover:hover){
+  .row:hover{background:linear-gradient(90deg,var(--g1),var(--g2) 50%,var(--g3));border-color:transparent;padding:0 12px}
+  .row:hover .label{visibility:hidden}
+  .row:hover .mq{display:flex;padding-left:12px}
+  .row:hover .count{color:#fff;font-weight:800;font-style:italic;position:relative;z-index:1;background:linear-gradient(90deg,transparent,var(--g3) 40%);padding-left:24px}
+  .rows li:hover .preview{opacity:1;transform:none}
+}
+.allworks{display:inline-flex;gap:6px;margin-top:22px;font-size:13px;color:#cfcfcf}
+.allworks:hover{color:#fff;text-decoration:underline}
+
+.social{position:absolute;right:22px;bottom:18px;width:150px;height:150px;z-index:6}
+.social a{position:absolute;display:grid;place-items:center;border-radius:50%;background:radial-gradient(circle at 30% 25%,#4a4a4a,#1c1c1c);border:1px solid rgba(255,255,255,.12);font-size:12px;font-weight:700}
+.social a:not(.call){width:36px;height:36px}
+.social .s1{left:46px;top:0}.social .s2{right:0;top:8px}.social .s3{left:0;top:46px}.social .s4{left:4px;top:104px}
+.social .call{right:0;top:46px;width:94px;height:94px;font-size:13px;font-weight:400;line-height:1.1;text-align:left;padding-left:18px;place-items:center start;background:radial-gradient(circle at 35% 25%,#555,#1e1e1e)}
+.social a:hover{border-color:var(--accent)}
+
+/* ============ INNER PAGES ============ */
+.inner{padding:0 0 64px;background:linear-gradient(180deg,#121212,#000 280px)}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 40px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.brand{font-size:17px;letter-spacing:-.02em}.brand b{font-style:italic;font-weight:800}
+.nav{display:flex;gap:6px;flex-wrap:wrap}
+.nav a{padding:8px 14px;border-radius:999px;font-size:14px;color:#cfcfcf}
+.nav a:hover{color:#fff}
+.nav a.on{background:#fff;color:#000}
+.wrap{padding:56px 40px 0}
+.big{font-size:clamp(44px,7vw,104px);font-weight:400;letter-spacing:-.05em;line-height:.9}
+.big em{font-weight:800}
+.lede{max-width:60ch;color:#c9c9c9;font-size:18px;line-height:1.6;margin-top:28px}
+.h3{font-size:22px;font-weight:500;letter-spacing:-.02em;margin-bottom:18px}
+.cols{display:grid;grid-template-columns:repeat(2,1fr);gap:56px;margin-top:72px}
+.prose p{color:#c4c4c4;line-height:1.7;max-width:62ch}
+.prose p+p{margin-top:16px}
+.list{list-style:none;border-top:1px solid var(--line)}
+.list li{display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-bottom:1px solid var(--line);font-size:15px}
+.list li span:last-child{color:var(--mute);text-align:right}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:13px;color:#d6d6d6}
+
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:40px}
+.filters button{border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:13px;color:#cfcfcf}
+.filters button sup{color:var(--mute);margin-left:3px}
+.filters button.on{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));border-color:transparent;color:#fff;font-style:italic;font-weight:600}
+.filters button.on sup{color:#fff}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px 24px;margin-top:40px}
+.card .art{border-radius:6px}
+.card h4{font-size:17px;font-weight:500;margin-top:14px;letter-spacing:-.01em}
+.card p{font-size:13px;color:var(--mute);margin-top:4px}
+.card:hover h4{text-decoration:underline}
+.empty{color:var(--mute);margin-top:40px}
+
+/* art */
+.art{position:relative;aspect-ratio:4/3;background:linear-gradient(140deg,var(--a),var(--b));display:grid;place-items:center;overflow:hidden}
+.phone{width:34%;aspect-ratio:9/19;background:#0c0c0c;border:3px solid #2a2a2a;border-radius:16% / 8%;padding:14% 9%;display:flex;flex-direction:column;gap:7%;box-shadow:0 20px 40px rgba(0,0,0,.4)}
+.ring{width:70%;aspect-ratio:1;margin:0 auto;border-radius:50%;background:conic-gradient(var(--a) 0 68%,#2b2b2b 0);-webkit-mask:radial-gradient(circle,transparent 56%,#000 57%);mask:radial-gradient(circle,transparent 56%,#000 57%)}
+.ln{height:6%;border-radius:3px;background:#2e2e2e}.ln.s{width:60%}.ln.a{background:var(--a);width:45%}
+.browser{width:74%;aspect-ratio:16/10;background:#f3f3f3;border-radius:7px;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,.35);display:grid;grid-template-rows:10% 1fr}
+.browser .bar{background:#e0e0e0;display:flex;align-items:center;gap:4%;padding-left:3%}
+.browser .bar i{width:5px;height:5px;border-radius:50%;background:#b5b5b5}
+.browser .body{display:grid;grid-template-columns:1fr 1fr;gap:6%;padding:7%}
+.browser .blk{border-radius:4px;background:#dcdcdc}.browser .blk.a{background:var(--a);grid-row:span 2}
+.mark{font-size:clamp(60px,9vw,140px);font-weight:800;font-style:italic;letter-spacing:-.06em;color:rgba(255,255,255,.92);line-height:1}
+
+/* project */
+.back{display:inline-flex;gap:8px;font-size:14px;color:#cfcfcf}.back:hover{color:#fff}
+.pmeta{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:40px;border-top:1px solid var(--line);padding-top:20px}
+.pmeta small{display:block;color:var(--mute);font-size:12px;margin-bottom:6px}
+.pmeta div{font-size:15px}
+.phero{margin-top:40px}.phero .art{aspect-ratio:16/8;border-radius:8px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px}
+.stat{border-top:1px solid var(--line);padding-top:18px}
+.stat b{display:block;font-size:clamp(40px,5vw,64px);font-weight:800;font-style:italic;letter-spacing:-.04em}
+.stat span{color:var(--mute);font-size:14px}
+.next{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-top:72px;padding:28px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:clamp(22px,3vw,36px);letter-spacing:-.03em}
+.next small{display:block;font-size:13px;color:var(--mute);letter-spacing:0}
+.next:hover em{text-decoration:underline}
+
+/* contact */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:8px}
+form{display:grid;gap:16px}
+label{display:grid;gap:8px;font-size:13px;color:#bdbdbd}
+input,select,textarea{width:100%;background:#0f0f0f;border:1px solid var(--line);border-radius:6px;padding:13px 14px;font-size:15px}
+textarea{min-height:130px;resize:vertical}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);outline:none}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.btn{justify-self:start;padding:15px 26px;border-radius:999px;background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));font-weight:600;font-style:italic}
+.btn:hover{filter:brightness(1.08)}
+.err{color:#ff6b6b;font-size:13px;min-height:18px}
+.done{border:1px solid var(--line);border-radius:8px;padding:28px}
+.done h3{font-size:24px;font-weight:500;margin-bottom:10px}
+.done p{color:#c4c4c4;line-height:1.6}
+.footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:40px 40px 0;margin-top:72px;border-top:1px solid var(--line);font-size:13px;color:var(--mute)}
+.footer a:hover{color:#fff}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:1100px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .preview{display:none}
+}
+@media (max-width:900px){
+  .frame{width:calc(100% - 24px);margin:12px auto}
+  .hero{grid-template-columns:1fr;aspect-ratio:auto;max-height:none;min-height:0}
+  .photo{height:min(125vw,640px)}
+  .name{left:18px;bottom:72px;font-size:clamp(56px,17vw,120px)}
+  .name .first{padding-left:0}
+  .meta.avail{left:18px}
+  .meta.loc{left:auto;right:18px;text-align:right}
+  .works{padding:36px 22px 28px;background:#000}
+  .row{height:52px}
+  .social{position:static;width:auto;height:auto;display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:32px}
+  .social a{position:static}
+  .social .call{width:auto;height:44px;border-radius:999px;padding:0 20px;order:-1}
+  .cols,.contact{grid-template-columns:1fr;gap:40px}
+  .pmeta{grid-template-columns:repeat(2,1fr)}
+  .topbar{padding:18px 20px}
+  .wrap{padding:40px 20px 0}
+  .footer{padding:32px 20px 0}
+}
+@media (max-width:560px){
+  .grid,.stats,.two{grid-template-columns:1fr}
+  .works-head{flex-direction:column}
+  .clients{justify-content:flex-start;padding-top:0}
+  .phero .art{aspect-ratio:4/3}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="backdrop" aria-hidden="true"></div>
+
+<!-- ================= HOME ================= -->
+<main id="home" class="page" aria-label="Home">
+  <section class="frame hero">
+    <div class="photo">
+      <a class="tab" href="#/about">About<br>Me <span class="arrow">↘</span></a>
+      <div class="shot">
+        <!-- Placeholder portrait. Drop your own photo next to this file as portrait.jpg -->
+        <svg viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs>
+            <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ececec"/><stop offset="1" stop-color="#b9b9b9"/></linearGradient>
+            <radialGradient id="face" cx=".35" cy=".35" r=".8"><stop offset="0" stop-color="#a8a8a8"/><stop offset=".7" stop-color="#6a6a6a"/><stop offset="1" stop-color="#3a3a3a"/></radialGradient>
+            <linearGradient id="body" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2b2b2b"/><stop offset="1" stop-color="#0d0d0d"/></linearGradient>
+            <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .18 0"/></filter>
+            <filter id="soft"><feGaussianBlur stdDeviation="2"/></filter>
+          </defs>
+          <rect width="600" height="800" fill="url(#bg)"/>
+          <path d="M60 800 C80 640 180 590 300 580 C420 590 540 640 560 800Z" fill="url(#body)"/>
+          <path d="M255 470 L345 470 L355 600 C330 625 270 625 245 600Z" fill="#555"/>
+          <ellipse cx="300" cy="360" rx="118" ry="150" fill="url(#face)" filter="url(#soft)"/>
+          <path d="M182 330 C180 230 240 196 305 196 C372 196 424 236 418 326 C400 280 370 258 300 256 C236 258 200 282 182 330Z" fill="#262626"/>
+          <path d="M180 690 C230 610 290 600 330 640 C300 700 240 740 180 760Z" fill="#7a7a7a" opacity=".55"/>
+          <rect width="600" height="800" filter="url(#grain)"/>
+        </svg>
+        <img src="portrait.jpg" alt="Portrait of Theo Marlowe" onerror="this.remove()">
+      </div>
+      <h1 class="name"><span class="first">Theo</span><span class="last">Marlowe</span></h1>
+      <div class="meta avail"><small>Availability</small><b>Available from November</b><span class="dot" aria-hidden="true"></span></div>
+      <div class="meta loc"><small>Location</small>Ghent, Belgium</div>
+    </div>
+
+    <div class="works">
+      <div class="works-head">
+        <h2>Works<sup id="total">(78)</sup></h2>
+        <div class="clients" aria-label="Selected clients">
+          <span><svg viewBox="0 0 16 16"><path d="M8 0 16 16H0Z"/></svg>Northwind</span>
+          <span><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/></svg>Halden</span>
+          <span><svg viewBox="0 0 16 16"><rect width="16" height="16" rx="4"/></svg>Parcelry</span>
+        </div>
+      </div>
+      <ul class="rows" id="rows"></ul>
+      <a class="allworks" href="#/works">See all projects <span class="arrow">↗</span></a>
+
+      <nav class="social" aria-label="Social links">
+        <a class="s1" href="#" aria-label="Dribbble">Dr</a>
+        <a class="s2" href="#" aria-label="Medium">Md</a>
+        <a class="s3" href="#" aria-label="Behance">Bē</a>
+        <a class="s4" href="#" aria-label="LinkedIn">in</a>
+        <a class="call" href="#/contact">Book a<br>Call <span class="arrow">↖</span></a>
+      </nav>
+    </div>
+  </section>
+</main>
+
+<!-- ================= ABOUT ================= -->
+<main id="about" class="page" aria-label="About">
+  <section class="frame inner">
+    <div data-topbar></div>
+    <div class="wrap">
+      <h1 class="big" tabindex="-1">I design products<br><em>people return to.</em></h1>
+      <p class="lede">I'm Theo, an independent product and brand designer in Ghent. For eleven years I've helped banks, logistics teams and small brands turn complicated things into tools that feel obvious.</p>
+
+      <div class="cols">
+        <div class="prose">
+          <h2 class="h3">Background</h2>
+          <p>I started in print, moved to interaction design, and spent four years leading the product team at Fieldnote Studio in Antwerp. Since 2021 I've worked on my own, partnering directly with founders and in-house teams.</p>
+          <p>My work sits between research and visual craft. I like to sit with the people who'll use a product, sketch fast, prototype early, and keep the design system tidy enough that engineers enjoy using it.</p>
+          <p>Outside client work I teach a monthly interface design workshop and ride gravel around the Flemish Ardennes.</p>
+        </div>
+        <div>
+          <h2 class="h3">Experience</h2>
+          <ul class="list">
+            <li><span>Independent designer</span><span>2021 – now</span></li>
+            <li><span>Design lead, Fieldnote Studio</span><span>2017 – 2021</span></li>
+            <li><span>Product designer, Kestrel Mobility</span><span>2014 – 2017</span></li>
+            <li><span>Graphic designer, Atelier Noord</span><span>2013 – 2014</span></li>
+            <li><span>BA Interaction Design</span><span>2013</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cols">
+        <div>
+          <h2 class="h3">What I do</h2>
+          <ul class="list">
+            <li><span>Product &amp; app design</span><span>iOS, Android, web</span></li>
+            <li><span>UX research &amp; strategy</span><span>Interviews, testing</span></li>
+            <li><span>Design systems</span><span>Tokens, components</span></li>
+            <li><span>Brand identity</span><span>Logo, type, guidelines</span></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="h3">Tools</h2>
+          <div class="tags"><span>Figma</span><span>Framer</span><span>Rive</span><span>Blender</span><span>Notion</span><span>Maze</span><span>HTML &amp; CSS</span></div>
+          <h2 class="h3" style="margin-top:40px">Recognition</h2>
+          <ul class="list">
+            <li><span>Speaker, Flanders Design Week</span><span>2024</span></li>
+            <li><span>Shortlist, European Product Design Prize</span><span>2023</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div data-footer></div>
+  </section>
+</main>
+
+<!-- ================= WORKS ================= -->
+<main id="works" class="page" aria-label="Works">
+  <section class="frame inner">
+    <div data-topbar></div>
+    <div class="wrap">
+      <h1 class="big" tabindex="-1">Works <em>(78)</em></h1>
+      <p class="lede">A selection of recent projects. Pick a discipline to filter, or open a project for the full case study.</p>
+      <div class="filters" id="filters" role="group" aria-label="Filter by discipline"></div>
+      <div class="grid" id="grid"></div>
+    </div>
+    <div data-footer></div>
+  </section>
+</main>
+
+<!-- ================= PROJECT ================= -->
+<main id="project" class="page" aria-label="Project">
+  <section class="frame inner">
+    <div data-topbar></div>
+    <div class="wrap" id="projectBody"></div>
+    <div data-footer></div>
+  </section>
+</main>
+
+<!-- ================= CONTACT ================= -->
+<main id="contact" class="page" aria-label="Contact">
+  <section class="frame inner">
+    <div data-topbar></div>
+    <div class="wrap">
+      <div class="contact">
+        <div>
+          <h1 class="big" tabindex="-1">Book a<br><em>call.</em></h1>
+          <p class="lede">Tell me about your product and timeline. I reply within two working days and take on two projects at a time.</p>
+          <ul class="list" style="margin-top:40px">
+            <li><span>Email</span><span><a href="mailto:hello@theomarlowe.design">hello@theomarlowe.design</a></span></li>
+            <li><span>Studio</span><span>Ghent, Belgium (CET)</span></li>
+            <li><span>Availability</span><span>From November <span class="dot"></span></span></li>
+          </ul>
+        </div>
+        <div id="formWrap">
+          <form id="form" novalidate>
+            <div class="two">
+              <label>Your name<input name="name" autocomplete="name" required></label>
+              <label>Email<input name="email" type="email" autocomplete="email" required></label>
+            </div>
+            <div class="two">
+              <label>Project type
+                <select name="type"><option>App Design</option><option>Product Design</option><option>Landing Page Design</option><option>UX Design</option><option>Dashboard</option><option>Brand Identity</option></select>
+              </label>
+              <label>Budget
+                <select name="budget"><option>€5k – €15k</option><option>€15k – €40k</option><option>€40k+</option><option>Not sure yet</option></select>
+              </label>
+            </div>
+            <label>About the project<textarea name="msg" required placeholder="What are you building, and when do you need it?"></textarea></label>
+            <p class="err" id="err" role="alert"></p>
+            <button class="btn" type="submit">Send request</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div data-footer></div>
+  </section>
+</main>
+
+<script>
+const CATS=[
+  {name:"Product Design",slug:"product-design",count:13},
+  {name:"Landing Page Design",slug:"landing-page-design",count:27},
+  {name:"App Design",slug:"app-design",count:16},
+  {name:"UX Design",slug:"ux-design",count:12},
+  {name:"Dashboard",slug:"dashboard",count:8},
+  {name:"Brand Identity",slug:"brand-identity",count:2}
+];
+const P=[
+ {id:"pulse-wallet",t:"Pulse Wallet",c:"Halden Bank",cat:"app-design",y:2025,role:"Lead product designer",a:"#ff2d55",b:"#1b1b1b",
+  o:"A spending app for young Halden customers that shows money as a monthly ring instead of a ledger.",
+  ch:"Under-30 customers opened the old banking app twice a month, mostly to check whether rent had cleared.",
+  ap:"Eight weeks of diary studies led to one idea: show what's left, not what's spent. I designed the ring, the weekly digest and the savings pockets, then built the component library with the iOS team.",
+  s:[["4.8","App Store rating"],["+62%","Weekly active users"],["3 wks","Design-to-build per feature"]]},
+ {id:"stride-leaderboard",t:"Stride Leaderboard",c:"Kinetic Run Club",cat:"app-design",y:2025,role:"Product designer",a:"#7b5cff",b:"#e9e6ff",
+  o:"Friendly competition for a city running club: weekly leaderboards, crews and streaks.",
+  ch:"Members logged runs in five different apps and the club couldn't see who was showing up.",
+  ap:"I designed a lightweight layer that imports runs, groups people into crews and resets every Monday so newcomers can win too.",
+  s:[["2.1k","Members onboarded"],["71%","Weekly retention"],["9","Crews in month one"]]},
+ {id:"weeknight",t:"Weeknight",c:"Weeknight Foods",cat:"app-design",y:2024,role:"Product & brand designer",a:"#ffb347",b:"#3d2a1a",
+  o:"A recipe app for busy people that plans five dinners from what's already in the fridge.",
+  ch:"Recipe apps assume time and a full pantry. Our users had neither.",
+  ap:"Short cooking videos, a fridge scanner and one grocery list per week. I led the full design from naming to launch.",
+  s:[["38k","Downloads in 90 days"],["12 min","Avg. cook-along time"],["4.7","Rating"]]},
+ {id:"northwind-console",t:"Northwind Console",c:"Northwind Logistics",cat:"dashboard",y:2025,role:"UX & UI lead",a:"#20c997",b:"#0e2a24",
+  o:"A real-time dispatch dashboard for 400 delivery vans across the Benelux.",
+  ch:"Dispatchers juggled three legacy tools and a whiteboard to reroute vans.",
+  ap:"Shadowed night shifts, mapped every reroute decision and designed a single map-first view with keyboard shortcuts.",
+  s:[["-31%","Time to reroute"],["1","Tool instead of 3"],["24/7","Shift coverage"]]},
+ {id:"parcelry-site",t:"Parcelry Website",c:"Parcelry",cat:"landing-page-design",y:2024,role:"Web designer",a:"#3a86ff",b:"#d9e7ff",
+  o:"A new marketing site for a parcel-locker startup expanding into Germany.",
+  ch:"The old site explained the technology. Visitors wanted to know where the nearest locker was.",
+  ap:"Rebuilt the story around a locker finder in the hero, localised in three languages, shipped in Framer.",
+  s:[["+48%","Sign-up conversion"],["3","Languages"],["1.1s","Largest paint"]]},
+ {id:"halden-onboarding",t:"Halden Onboarding",c:"Halden Bank",cat:"ux-design",y:2024,role:"UX designer",a:"#f7c531",b:"#2a2310",
+  o:"A rethink of account opening, from 19 screens to 7.",
+  ch:"Half of applicants dropped out at ID verification.",
+  ap:"Usability tests with 40 applicants, rewrites of every error message, and a save-and-return flow.",
+  s:[["-55%","Drop-off"],["7","Screens, down from 19"],["6 min","Median completion"]]},
+ {id:"atlas-field-notes",t:"Atlas Field Notes",c:"Atlas Survey",cat:"product-design",y:2023,role:"Product designer",a:"#8d6e63",b:"#efe7e1",
+  o:"An offline-first notes tool for field surveyors working without signal.",
+  ch:"Notes were lost when tablets synced over patchy networks.",
+  ap:"Designed conflict-free sync states, glove-friendly controls and a sunlight-readable theme.",
+  s:[["0","Lost notes since launch"],["2x","Larger touch targets"],["600","Surveyors"]]},
+ {id:"solace-clinics",t:"Solace Clinics",c:"Solace",cat:"brand-identity",y:2023,role:"Brand designer",a:"#6fb1a0",b:"#1f3b35",
+  o:"Identity for a network of calm, walk-in mental health clinics.",
+  ch:"Healthcare branding tends to look clinical. Solace wanted to feel like a good living room.",
+  ap:"Soft geometric mark, warm greens, a humane type system and signage for four locations.",
+  s:[["4","Clinics branded"],["120","Page guideline book"],["1","Typeface family"]]},
+ {id:"meridian-coffee",t:"Meridian Coffee",c:"Meridian Roasters",cat:"landing-page-design",y:2024,role:"Web designer",a:"#c8102e",b:"#2a0a10",
+  o:"A subscription landing page for a small-batch roaster.",
+  ch:"Subscriptions were hidden three clicks deep.",
+  ap:"A single page built around a taste quiz that ends in a ready-made subscription.",
+  s:[["+83%","Subscriptions"],["40s","Avg. quiz time"],["2","Weeks to launch"]]},
+ {id:"orbit-crm",t:"Orbit CRM",c:"Orbit",cat:"product-design",y:2023,role:"Design lead",a:"#5b6cff",b:"#111a40",
+  o:"A CRM for small agencies who hate CRMs.",
+  ch:"Agencies tracked deals in spreadsheets because existing tools felt like admin.",
+  ap:"Built around the inbox: deals appear from email threads, and the pipeline updates itself.",
+  s:[["1.4k","Agencies"],["-60%","Manual data entry"],["NPS 61","After 6 months"]]},
+ {id:"linea-transit",t:"Linea Transit Pass",c:"Linea",cat:"ux-design",y:2022,role:"UX designer",a:"#ff7a00",b:"#2b1600",
+  o:"A tap-to-ride pass for a regional bus network.",
+  ch:"Riders didn't know which ticket to buy for multi-zone trips.",
+  ap:"Replaced 14 ticket types with best-fare capping and a single tap flow.",
+  s:[["14→1","Ticket types"],["+22%","Ridership"],["-40%","Support calls"]]},
+ {id:"ledgerly-insights",t:"Ledgerly Insights",c:"Ledgerly",cat:"dashboard",y:2022,role:"Product designer",a:"#00b4d8",b:"#062a33",
+  o:"A finance dashboard that explains cash flow in plain language.",
+  ch:"Founders exported data to spreadsheets to understand their own runway.",
+  ap:"Designed plain-language summaries above every chart and a runway forecast people could trust.",
+  s:[["-70%","Exports to Excel"],["5","Core views"],["3x","Session length"]]}
+];
+const catName=s=>(CATS.find(c=>c.slug===s)||{}).name||"";
+const kind=cat=>cat==="app-design"?"phone":cat==="brand-identity"?"mark":"browser";
+
+function art(p){
+  const k=kind(p.cat);let inner;
+  if(k==="phone")inner=`<div class="phone"><div class="ring"></div><div class="ln"></div><div class="ln s"></div><div class="ln a"></div><div class="ln"></div><div class="ln s"></div></div>`;
+  else if(k==="mark")inner=`<div class="mark">${p.t[0]}</div>`;
+  else inner=`<div class="browser"><div class="bar"><i></i><i></i><i></i></div><div class="body"><div class="blk a"></div><div class="blk"></div><div class="blk"></div></div></div>`;
+  return `<div class="art" style="--a:${p.a};--b:${p.b}" aria-hidden="true">${inner}</div>`;
+}
+
+/* home rows */
+document.getElementById("total").textContent=`(${CATS.reduce((n,c)=>n+c.count,0)})`;
+document.getElementById("rows").innerHTML=CATS.map(c=>{
+  let ps=P.filter(p=>p.cat===c.slug);while(ps.length<3)ps=ps.concat(ps.length?ps:P);
+  const rep=Array(4).fill(`${c.name} → `).join("");
+  return `<li><a class="row" href="#/works/${c.slug}"><span class="label">${c.name}</span><span class="mq" aria-hidden="true"><i>${rep}</i><i>${rep}</i></span><span class="count">${c.count}</span></a>
+  <div class="preview" aria-hidden="true">${ps.slice(0,3).map(p=>`<div class="pc">${art(p)}</div>`).join("")}</div></li>`;
+}).join("");
+
+/* shared chrome */
+const NAV=[["","Home"],["about","About"],["works","Works"],["contact","Contact"]];
+document.querySelectorAll("[data-topbar]").forEach(el=>el.outerHTML=
+  `<header class="topbar"><a class="brand" href="#/">Theo <b>Marlowe</b></a><nav class="nav" aria-label="Main">${NAV.map(([h,l])=>`<a href="#/${h}" data-nav="${h||"home"}">${l}</a>`).join("")}</nav></header>`);
+document.querySelectorAll("[data-footer]").forEach(el=>el.outerHTML=
+  `<footer class="footer"><span>© ${new Date().getFullYear()} Theo Marlowe</span><span><a href="mailto:hello@theomarlowe.design">hello@theomarlowe.design</a></span><span><a href="#">LinkedIn</a> &nbsp; <a href="#">Dribbble</a> &nbsp; <a href="#">Behance</a></span></footer>`);
+
+/* works page */
+function renderWorks(slug){
+  const f=document.getElementById("filters");
+  f.innerHTML=[{name:"All",slug:"",count:P.length}].concat(CATS).map(c=>
+    `<button class="${(slug||"")===c.slug?"on":""}" aria-pressed="${(slug||"")===c.slug}" data-slug="${c.slug}">${c.name}<sup>${c.count}</sup></button>`).join("");
+  const list=slug?P.filter(p=>p.cat===slug):P;
+  document.getElementById("grid").innerHTML=list.length?list.map(p=>
+    `<a class="card" href="#/work/${p.id}">${art(p)}<h4>${p.t}</h4><p>${p.c}, ${p.y}</p></a>`).join("")
+    :`<p class="empty">No case studies published in this category yet. <a href="#/contact" style="text-decoration:underline">Ask me for the full deck.</a></p>`;
+}
+document.getElementById("filters").addEventListener("click",e=>{
+  const b=e.target.closest("button");if(!b)return;
+  location.hash=b.dataset.slug?`#/works/${b.dataset.slug}`:"#/works";
+});
+
+/* project page */
+function renderProject(id){
+  const i=P.findIndex(p=>p.id===id);if(i<0){location.hash="#/works";return false}
+  const p=P[i],n=P[(i+1)%P.length];
+  document.getElementById("projectBody").innerHTML=`
+    <a class="back" href="#/works/${p.cat}"><span class="arrow">←</span> ${catName(p.cat)}</a>
+    <h1 class="big" tabindex="-1" style="margin-top:28px">${p.t}</h1>
+    <p class="lede">${p.o}</p>
+    <div class="pmeta"><div><small>Client</small>${p.c}</div><div><small>Role</small>${p.role}</div><div><small>Year</small>${p.y}</div><div><small>Discipline</small>${catName(p.cat)}</div></div>
+    <div class="phero">${art(p)}</div>
+    <div class="cols prose"><div><h2 class="h3">The problem</h2><p>${p.ch}</p></div><div><h2 class="h3">What I did</h2><p>${p.ap}</p></div></div>
+    <div class="stats">${p.s.map(([v,l])=>`<div class="stat"><b>${v}</b><span>${l}</span></div>`).join("")}</div>
+    <a class="next" href="#/work/${n.id}"><span><small>Next project</small><em>${n.t}</em></span><span class="arrow">↗</span></a>`;
+  document.title=`${p.t} — Theo Marlowe`;
+}
+
+/* contact form */
+document.getElementById("form").addEventListener("submit",e=>{
+  e.preventDefault();const f=e.target,err=document.getElementById("err");
+  if(!f.name.value.trim())return err.textContent="Add your name so I know who to reply to.";
+  if(!/^\S+@\S+\.\S+$/.test(f.email.value))return err.textContent="Enter a valid email address, like you@company.com.";
+  if(f.msg.value.trim().length<10)return err.textContent="Add a sentence or two about the project.";
+  document.getElementById("formWrap").innerHTML=`<div class="done" role="status"><h3>Request sent</h3><p>Thanks, ${f.name.value.trim().split(" ")[0]}. I'll reply to ${f.email.value} within two working days with a few times for a call.</p></div>`;
+});
+
+/* router */
+const TITLES={home:"Theo Marlowe — Product & Brand Designer",about:"About — Theo Marlowe",works:"Works — Theo Marlowe",contact:"Book a call — Theo Marlowe"};
+function route(){
+  const [a="",b]=location.hash.replace(/^#\/?/,"").split("/");
+  let id="home";
+  if(a==="work"&&b){if(renderProject(b)===false)return;id="project"}
+  else if(a==="works"){renderWorks(b);id="works"}
+  else if(a==="about"||a==="contact")id=a;
+  document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===id));
+  document.querySelectorAll("[data-nav]").forEach(l=>l.classList.toggle("on",l.dataset.nav===(id==="project"?"works":id)));
+  if(TITLES[id])document.title=TITLES[id];
+  window.scrollTo(0,0);
+  const h=document.querySelector(`#${id} h1[tabindex]`);if(h)h.focus({preventScroll:true});
+}
+window.addEventListener("hashchange",route);route();
+</script>
+</body>
+</html>
