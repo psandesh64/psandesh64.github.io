@@ -150,3 +150,19 @@ Add `api.sandeshpradhan.com.np` in Render's settings, then add a DNS record:
 The first request after idle takes about 1 min. One fix is a free uptime pinger (e.g., UptimeRobot) hitting `/api/health` every 10 min.
 
 > A 31-day month is 744h, which fits under the 750h limit for **one** service only.
+Set up this Neon project in the current working directory.
+
+1. `npm i -g neon@latest && neon login`
+2. `neon skills -y`
+3. `neon mcp -y`
+4. `neon link --project-id empty-bonus-71395825 --branch production -y`
+5. `neon config init`
+6. Update `neon.ts`:
+
+```ts
+import { defineConfig } from "@neon/config/v1";
+
+export default defineConfig({});
+```
+
+7. `neon deploy`
